@@ -14,6 +14,7 @@ const Search = ({
   const [query, setQuery] = useState();
   const [apiUrl, setApiUrl] = useState(initialUrl);
   const [numberResults, setNumberResults] = useState();
+  const [processingTime, setProcessingTime] = useState();
 
   const getData = async () => {
     const data = await fetch(apiUrl)
@@ -59,6 +60,7 @@ const Search = ({
       console.log(data);
       setTotalPages(data.nbPages);
       setNumberResults(data.nbHits);
+      setProcessingTime(data.processingTimeMS);
       setEntries(data.hits);
       setIsLoading(false);
     });
@@ -73,6 +75,7 @@ const Search = ({
       getData().then((data) => {
         setTotalPages(data.nbPages);
         setNumberResults(data.nbHits);
+        setProcessingTime(data.processingTimeMS);
         setEntries(data.hits);
         setIsLoading(false);
       });
@@ -87,6 +90,7 @@ const Search = ({
     getData().then((data) => {
       setTotalPages(data.nbPages);
       setNumberResults(data.nbHits);
+      setProcessingTime(data.processingTimeMS);
       setEntries(data.hits);
       setIsLoading(false);
     });
@@ -130,7 +134,10 @@ const Search = ({
       </div>
       <div className='search-filters-container'>
         <div className='search-filters-selectors'></div>
-        <div className='search-meta-data'>{numberResults}</div>
+        <div className='search-meta-data'>
+          {numberResults &&
+            `${numberResults} results (${processingTime / 1000} seconds)`}
+        </div>
       </div>
     </>
   );

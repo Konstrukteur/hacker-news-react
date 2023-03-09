@@ -16,3 +16,14 @@
   background-color: #d81159;
   border: 1px solid #d81159;
 }
+
+.pageLink:hover {
+  cursor: pointer;
+  float: left;
+  /* width: 30px; */
+  padding: 5px;
+  margin: 5px;
+  color: white;
+  background-color: #d81159;
+  border: 1px solid #d81159;
+}
