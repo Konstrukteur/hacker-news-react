@@ -13,6 +13,7 @@ const Search = ({
   const [params, setParams] = useState("search?tags=front_page");
   const [query, setQuery] = useState();
   const [apiUrl, setApiUrl] = useState(initialUrl);
+  const [numberResults, setNumberResults] = useState();
 
   const getData = async () => {
     const data = await fetch(apiUrl)
@@ -55,7 +56,9 @@ const Search = ({
     console.log(apiUrl);
     getData().then((data) => {
       console.log("hello from 1. useEffec");
+      console.log(data);
       setTotalPages(data.nbPages);
+      setNumberResults(data.nbHits);
       setEntries(data.hits);
       setIsLoading(false);
     });
@@ -69,6 +72,7 @@ const Search = ({
       setCurrentPage(0);
       getData().then((data) => {
         setTotalPages(data.nbPages);
+        setNumberResults(data.nbHits);
         setEntries(data.hits);
         setIsLoading(false);
       });
@@ -82,6 +86,7 @@ const Search = ({
     setCurrentPage(0);
     getData().then((data) => {
       setTotalPages(data.nbPages);
+      setNumberResults(data.nbHits);
       setEntries(data.hits);
       setIsLoading(false);
     });
@@ -90,19 +95,19 @@ const Search = ({
   return (
     <>
       <div className='search-bar'>
-        <span class='SearchHeader_logo'>
-          <a href='https://news.ycombinator.com'>
-            <img src='../images/logo-hn-search-a822432b.png'></img>
+        <div className='search-title'>
+          <a href='https://konstrukteur.github.io/hacker-news-react/'>
+            <img src={require("../images/logo-hn.png")}></img>
           </a>
           <a href='/'>
-            <div class='SearchHeader_label'>
+            <div className='search-title-label'>
               Search
               <br />
               Hacker News
             </div>
           </a>
-        </span>
-        <div class='search-bar-input'>
+        </div>
+        <div className='search-bar-input'>
           <input
             className='search-input'
             type='text'
@@ -111,9 +116,9 @@ const Search = ({
             onKeyUp={handleKeyPress}
             placeholder='Search stories by title, url or author'
           />
-          {/* <span class="SearchIcon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
+          {/* <span className="SearchIcon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-        <span class="SearchIcon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span> */}
+        <span className="SearchIcon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span> */}
         </div>
         <button
           className='search-bar-button'
@@ -122,6 +127,10 @@ const Search = ({
         >
           search
         </button>
+      </div>
+      <div className='search-filters-container'>
+        <div className='search-filters-selectors'></div>
+        <div className='search-meta-data'>{numberResults}</div>
       </div>
     </>
   );
