@@ -90,14 +90,31 @@ const Search = ({
   return (
     <>
       <div className='search-bar'>
-        <div className='search-bar-title'>Hacker News</div>
-        <input
-          className='search-bar-input'
-          type='text'
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          onKeyUp={handleKeyPress}
-        />
+        <span class='SearchHeader_logo'>
+          <a href='https://news.ycombinator.com'>
+            <img src='../images/logo-hn-search-a822432b.png'></img>
+          </a>
+          <a href='/'>
+            <div class='SearchHeader_label'>
+              Search
+              <br />
+              Hacker News
+            </div>
+          </a>
+        </span>
+        <div class='search-bar-input'>
+          <input
+            className='search-input'
+            type='text'
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            onKeyUp={handleKeyPress}
+            placeholder='Search stories by title, url or author'
+          />
+          {/* <span class="SearchIcon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        <span class="SearchIcon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span> */}
+        </div>
         <button
           className='search-bar-button'
           type='button'
