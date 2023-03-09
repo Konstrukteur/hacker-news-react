@@ -1,3 +1,5 @@
+import "../styles/pagination.css";
+
 const Pagination = ({ currentPage, setCurrentPage, totalPages }) => {
   const handleClick = (event) => {
     console.log(event.target.innerHTML - 1);
