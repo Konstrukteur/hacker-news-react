@@ -6,18 +6,18 @@ const Pagination = ({ currentPage, setCurrentPage, totalPages }) => {
     setCurrentPage(event.target.innerHTML - 1);
   };
   return (
-    <div>
+    <div className='pagination-links'>
       {[...Array(totalPages).keys()].map((page) => {
         if (currentPage === page) {
           return (
-            <div className='activePageLink' id={page}>
+            <div className='active-page-link' id={page}>
               {page + 1}
             </div>
           );
         } else {
           return (
             <div
-              className='pageLink'
+              className='page-link'
               id={page}
               value={page}
               onClick={(event) => {
