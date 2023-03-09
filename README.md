@@ -6,7 +6,7 @@ The goal of this project is to write a simple custom implementation of the Hacke
 
 The main functional requirements are to use an API, asynchronous code, pagination and deployment to gh=pages.
 
-The implementation of this website can be viewed [here](https://konstrukteur.github.io/hacker-news/)
+The implementation of this website can be viewed [here](https://konstrukteur.github.io/hacker-news-react/)
 
 ![initial design](design.png)
 
