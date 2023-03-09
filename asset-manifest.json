@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/konstrukteur.github.io/hacker-news/static/css/main.3030c0d8.css",
-    "main.js": "/konstrukteur.github.io/hacker-news/static/js/main.ee2d5a54.js",
-    "index.html": "/konstrukteur.github.io/hacker-news/index.html",
-    "main.3030c0d8.css.map": "/konstrukteur.github.io/hacker-news/static/css/main.3030c0d8.css.map",
-    "main.ee2d5a54.js.map": "/konstrukteur.github.io/hacker-news/static/js/main.ee2d5a54.js.map"
+    "main.css": "/konstrukteur.github.io/hacker-news-react/static/css/main.3030c0d8.css",
+    "main.js": "/konstrukteur.github.io/hacker-news-react/static/js/main.ee2d5a54.js",
+    "index.html": "/konstrukteur.github.io/hacker-news-react/index.html",
+    "main.3030c0d8.css.map": "/konstrukteur.github.io/hacker-news-react/static/css/main.3030c0d8.css.map",
+    "main.ee2d5a54.js.map": "/konstrukteur.github.io/hacker-news-react/static/js/main.ee2d5a54.js.map"
   },
   "entrypoints": [
     "static/css/main.3030c0d8.css",
