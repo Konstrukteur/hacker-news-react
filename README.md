@@ -1,6 +1,6 @@
 # Hacker News App
 
-## Write a To-Do list application with javascript
+## Write an api served app application with React
 
 The goal of this project is to write a simple custom implementation of the Hacker News at ycombinator [https://news.ycombinator.com/news](https://news.ycombinator.com/news).
 
@@ -18,7 +18,7 @@ Algolia API [https://hn.algolia.com/api](https://hn.algolia.com/api)
 
 - gustomize root path to github repository root path in package.json
 
-  - "homepage": "account.github.io/project-path/",
+  - "homepage": "http://{github-username}.github.io/{repo-name}",
 
 - install gh-pages
 
