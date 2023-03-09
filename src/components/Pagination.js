@@ -1,5 +1,6 @@
 const Pagination = ({ currentPage, setCurrentPage, totalPages }) => {
   const handleClick = (event) => {
+    console.log(event.target.innerHTML - 1);
     setCurrentPage(event.target.innerHTML - 1);
   };
   return (

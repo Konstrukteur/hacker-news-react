@@ -2,8 +2,8 @@ const Entry = ({ entry, setIsLoading }) => {
   return (
     <div className='result-entry' key={entry.index}>
       <div className='entry-title'>
-        {setIsLoading(false)}
-        {entry.title}
+        {/* {setIsLoading(false)} */}
+        {entry.title} ({entry.url})
       </div>
       <div className='entry-link'>
         <div className='entry-points'>{entry.points}</div>

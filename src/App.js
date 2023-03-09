@@ -3,10 +3,13 @@ import { useEffect, useState } from "react";
 import Search from "./components/Search";
 import Entry from "./components/Entry";
 import loading from "./images/loading.gif";
+import Pagination from "./components/Pagination";
 
 function App() {
   const [entries, setEntries] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [currentPage, setCurrentPage] = useState(0);
+  const [totalPages, setTotalPages] = useState(0);
 
   useEffect(() => {
     setIsLoading(false);
@@ -20,6 +23,9 @@ function App() {
         entries={entries}
         setEntries={setEntries}
         setIsLoading={setIsLoading}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+        setTotalPages={setTotalPages}
       />
       <div>
         {isLoading === true && <img src={loading} alt='loading'></img>}
@@ -32,6 +38,11 @@ function App() {
             />
           ))}
       </div>
+      <Pagination
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+        totalPages={totalPages}
+      />
     </div>
   );
 }
