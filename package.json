@@ -1,5 +1,6 @@
 {
   "name": "hacker-news",
+  "homepage": "konstrukteur.github.io/hacker-news/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -14,7 +15,7 @@
   "scripts": {
     "start": "BROWSER='safari' react-scripts start",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
+    "deploy": "gh-pages -d build --remote github",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

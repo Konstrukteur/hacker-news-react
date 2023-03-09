@@ -4,18 +4,28 @@ This project is a custom implementation of the Hacker News at ycombinator [https
 
 ## API
 
-[https://hn.algolia.com/api](https://hn.algolia.com/api)
+Algolia API [https://hn.algolia.com/api](https://hn.algolia.com/api)
 
 ## Deployment on GitHub
 
-- install gh-pages
-  npm install gh-pages --save-dev
+- gustomize root path to github repository root path in package.json
 
-- add predeploy and deploy script to package.json
-  "predeploy" : "npm run build",
-  "deploy" : "gh-pages -d build",
+  - "homepage": "account.github.io/project-path/",
+
+- install gh-pages
+
+  - npm install gh-pages --save-dev
+
+- add predeploy and deploy script to package.json. customize the gh-pages deply script
+
+  - "predeploy" : "npm run build",
+  - "deploy" : "gh-pages -d build (--remote github)",
 
 - commit and push to github
-  git add .
-  git commit -m "setup gh-pages"
-  git push
+
+  - git add .
+  - git commit -m "setup gh-pages"
+  - git push
+
+- deploy
+  - npm run deploy
