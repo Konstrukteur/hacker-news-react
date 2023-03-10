@@ -124,7 +124,7 @@ const Footer = ({
           </span>
         </div>
         <div className='footer-search-container'>
-          <NavLink to='/hacker-news-react/search'>Search:</NavLink>
+          <NavLink to='/search'>Search:</NavLink>
           <input
             className='footer-search-input'
             type='text'
