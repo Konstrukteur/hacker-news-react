@@ -1,5 +1,7 @@
+import { Routes, Route } from "react-router-dom";
 import { useEffect, useState } from "react";
-// import { link } from "react-router-dom";
+import HomeLayout from "./components/HomeLayout";
+import SearchLayout from "./components/SearchLayout";
 import Search from "./components/Search";
 import Entry from "./components/Entry";
 import loading from "./images/loading.gif";
@@ -18,32 +20,16 @@ function App() {
   const handlePagination = () => {};
 
   return (
-    <div>
-      <Search
-        entries={entries}
-        setEntries={setEntries}
-        setIsLoading={setIsLoading}
-        currentPage={currentPage}
-        setCurrentPage={setCurrentPage}
-        setTotalPages={setTotalPages}
-      />
-      <div>
-        {isLoading === true && <img src={loading} alt='loading'></img>}
-        {entries.length > 1 &&
-          entries.map((entry) => (
-            <Entry
-              key={entry.objectID}
-              entry={entry}
-              setIsLoading={setIsLoading}
-            />
-          ))}
-      </div>
-      <Pagination
-        currentPage={currentPage}
-        setCurrentPage={setCurrentPage}
-        totalPages={totalPages}
-      />
-    </div>
+    <Routes>
+      <Route path='/' element={<HomeLayout />} />
+      <Route path='/news' element={<HomeLayout />} />
+      <Route path='/newest' element={<HomeLayout />} />
+      <Route path='/front' element={<HomeLayout />} />
+      <Route path='/newcomments' element={<HomeLayout />} />
+      <Route path='/ask' element={<HomeLayout />} />
+      <Route path='/show' element={<HomeLayout />} />
+      <Route path='/search' element={<SearchLayout />} />
+    </Routes>
   );
 }
 
