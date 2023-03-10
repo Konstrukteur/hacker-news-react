@@ -76,9 +76,10 @@ header img {
   align-items: center;
   margin: 0 0 1em 0;
 }
-.footer-search-container p {
+.footer-search-container a {
   font-size: 14px;
   color: #d81159;
+  text-decoration: none;
 }
 .footer-search-input {
   width: 152px;

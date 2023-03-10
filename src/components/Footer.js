@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { NavLink } from "react-router-dom";
 
 const Footer = ({
   setEntries,
@@ -123,7 +124,7 @@ const Footer = ({
           </span>
         </div>
         <div className='footer-search-container'>
-          <p>Search:</p>
+          <NavLink to='/hacker-news-react/search'>Search:</NavLink>
           <input
             className='footer-search-input'
             type='text'

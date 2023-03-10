@@ -115,7 +115,7 @@ const Search = ({
           <a href='https://konstrukteur.github.io/hacker-news-react/'>
             <img src={require("../images/logo-hn.png")}></img>
           </a>
-          <a href='/'>
+          <a href='/hacker-news-react'>
             <div className='search-title-label'>
               Search
               <br />
