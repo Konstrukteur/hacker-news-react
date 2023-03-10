@@ -21,14 +21,14 @@ function App() {
 
   return (
     <Routes>
-      <Route path='/' element={<NewsLayout />} />
-      <Route path='/news' element={<NewsLayout />} />
-      <Route path='/newest' element={<NewsLayout />} />
-      <Route path='/front' element={<NewsLayout />} />
-      <Route path='/newcomments' element={<NewsLayout />} />
-      <Route path='/ask' element={<NewsLayout />} />
-      <Route path='/show' element={<NewsLayout />} />
-      <Route path='/search' element={<SearchLayout />} />
+      <Route path='/hacker-news-react/' element={<NewsLayout />} />
+      <Route path='/hacker-news-react/news' element={<NewsLayout />} />
+      <Route path='/hacker-news-react/newest' element={<NewsLayout />} />
+      <Route path='/hacker-news-react/front' element={<NewsLayout />} />
+      <Route path='/hacker-news-react/newcomments' element={<NewsLayout />} />
+      <Route path='/hacker-news-react/ask' element={<NewsLayout />} />
+      <Route path='/hacker-news-react/show' element={<NewsLayout />} />
+      <Route path='/hacker-news-react/search' element={<SearchLayout />} />
     </Routes>
   );
 }
