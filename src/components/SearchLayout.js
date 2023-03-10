@@ -6,6 +6,7 @@ import Entry from "./Entry";
 import loading from "../images/loading.gif";
 import Pagination from "./Pagination";
 import "../styles/searchStyles.css";
+import "../styles/searchResultsStyles.css";
 
 function SearchLayout() {
   const [entries, setEntries] = useState([]);

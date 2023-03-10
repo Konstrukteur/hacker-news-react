@@ -1,0 +1,119 @@
+* {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Home Styles */
+center {
+  margin: 8px;
+}
+.home-container {
+  width: 85vw;
+  min-width: 796px;
+  margin: 0 auto;
+  background-color: rgba(216, 17, 89, 0.05);
+}
+
+/* Navigation Styles */
+header {
+  height: 24px;
+  background-color: #d81159;
+  color: white;
+  display: flex;
+  align-items: center;
+  padding: 4px 0;
+}
+header img {
+  margin-top: 4px;
+  width: 24px;
+}
+.header-title {
+  font-weight: bold;
+  font-size: 10pt;
+  margin: 0 10px 0 4px;
+  text-decoration: none;
+  color: white;
+}
+.header-selector-container {
+  display: flex;
+  font-size: 12px;
+}
+.header-seperator {
+  margin: 0 5px;
+}
+.header-selector {
+  display: flex;
+  text-decoration: none;
+  color: white;
+}
+.header-selector.active {
+  color: white;
+  font-weight: bold;
+}
+
+/* Footer Styles */
+.footer-container {
+  height: 91px;
+  padding: 10px 0 0 0;
+}
+.footer-nav {
+  border-top: 1px solid #d81159;
+  padding: 15px 0 15px 0;
+  font-size: 11px;
+  text-decoration: none;
+  color: #d81159;
+}
+.footer-nav a {
+  text-decoration: none;
+  color: #d81159;
+}
+.footer-search-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 0 1em 0;
+}
+.footer-search-container p {
+  font-size: 14px;
+  color: #d81159;
+}
+.footer-search-input {
+  width: 152px;
+  height: 21px;
+  padding: 1;
+  margin: 0 0 0 10px;
+  background-color: rgb(255, 255, 255);
+  border-bottom-color: rgb(238, 238, 238);
+  border-bottom-style: inset;
+  border-bottom-width: 2px;
+  border-collapse: separate;
+  border-image-outset: 0;
+  border-image-repeat: stretch;
+  border-image-slice: 100%;
+  border-image-source: none;
+  border-image-width: 1;
+  border-left-color: rgb(238, 238, 238);
+  border-left-style: inset;
+  border-left-width: 2px;
+  border-right-color: rgb(238, 238, 238);
+  border-right-style: inset;
+  border-right-width: 2px;
+  border-top-color: rgb(238, 238, 238);
+  border-top-style: inset;
+  border-top-width: 2px;
+}
+input {
+  font-family: monospace;
+  font-size: 14px;
+  font-style: normal;
+  font-variant-alternates: normal;
+  font-variant-caps: normal;
+  font-variant-east-asian: normal;
+  font-variant-ligatures: normal;
+  font-variant-numeric: normal;
+  font-variant-position: normal;
+  font-weight: 400;
+}

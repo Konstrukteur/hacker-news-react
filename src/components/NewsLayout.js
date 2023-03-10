@@ -1,13 +1,14 @@
 import { Routes, Route } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Navigation from "./Navigation";
-import Search from "./Search";
+import Footer from "./Footer";
 import Entry from "./Entry";
 import loading from "../images/loading.gif";
 import Pagination from "./Pagination";
-import "../styles/homeStyles.css";
+import "../styles/newsStyles.css";
+import "../styles/searchResultsStyles.css";
 
-function HomeLayout() {
+function NewsLayout() {
   const [entries, setEntries] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(0);
@@ -23,7 +24,7 @@ function HomeLayout() {
     <center>
       <div className='home-container'>
         <Navigation />
-        <div>
+        <div className='entrylist-container'>
           {isLoading === true && <img src={loading} alt='loading'></img>}
           {entries.length > 1 &&
             entries.map((entry) => (
@@ -39,7 +40,7 @@ function HomeLayout() {
           setCurrentPage={setCurrentPage}
           totalPages={totalPages}
         />
-        <Search
+        <Footer
           entries={entries}
           setEntries={setEntries}
           setIsLoading={setIsLoading}
@@ -52,4 +53,4 @@ function HomeLayout() {
   );
 }
 
-export default HomeLayout;
+export default NewsLayout;

@@ -1,4 +1,4 @@
-const Entry = ({ entry, setIsLoading }) => {
+const Entry = ({ entry }) => {
   return (
     <article className='result-entry' key={entry.title}>
       <div className='entry-container'>
@@ -14,9 +14,9 @@ const Entry = ({ entry, setIsLoading }) => {
             </p>
           </div>
           <div className='entry-meta'>
-            <span>{entry.points}</span>
+            <span>{entry.points} point</span>
             <span className='entry-separator'>|</span>
-            <span>{entry.author}</span>
+            <span>by {entry.author}</span>
             <span className='entry-separator'>|</span>
             <span>
               <a href={entry.url}>17 days ago</a>
