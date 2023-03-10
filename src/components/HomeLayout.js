@@ -1,0 +1,55 @@
+import { Routes, Route } from "react-router-dom";
+import { useEffect, useState } from "react";
+import Navigation from "./Navigation";
+import Search from "./Search";
+import Entry from "./Entry";
+import loading from "../images/loading.gif";
+import Pagination from "./Pagination";
+import "../styles/homeStyles.css";
+
+function HomeLayout() {
+  const [entries, setEntries] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [currentPage, setCurrentPage] = useState(0);
+  const [totalPages, setTotalPages] = useState(0);
+
+  useEffect(() => {
+    setIsLoading(false);
+  }, [entries]);
+
+  const handlePagination = () => {};
+
+  return (
+    <center>
+      <div className='home-container'>
+        <Navigation />
+        <div>
+          {isLoading === true && <img src={loading} alt='loading'></img>}
+          {entries.length > 1 &&
+            entries.map((entry) => (
+              <Entry
+                key={entry.objectID}
+                entry={entry}
+                setIsLoading={setIsLoading}
+              />
+            ))}
+        </div>
+        <Pagination
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+          totalPages={totalPages}
+        />
+        <Search
+          entries={entries}
+          setEntries={setEntries}
+          setIsLoading={setIsLoading}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+          setTotalPages={setTotalPages}
+        />
+      </div>
+    </center>
+  );
+}
+
+export default HomeLayout;

@@ -48,6 +48,16 @@ const Search = ({
   // http://hn.algolia.com/api/v1/search?tags=comment,story_X
 
   useEffect(() => {
+    console.log(query);
+  }, [query]);
+
+  // const handleQuery = (event, query) => {
+  //   if (event.key === "Enter") {
+  //     setQuery(query);
+  //   }
+  // };
+
+  useEffect(() => {
     query
       ? setApiUrl(`${baseUrl}${params}${query}&page=${currentPage}`)
       : setApiUrl(`${baseUrl}${params}&page=${currentPage}`);
@@ -73,6 +83,7 @@ const Search = ({
       setParams("search?query=");
       setCurrentPage(0);
       getData().then((data) => {
+        console.log(data);
         setTotalPages(data.nbPages);
         setNumberResults(data.nbHits);
         setProcessingTime(data.processingTimeMS);
@@ -88,6 +99,7 @@ const Search = ({
     setParams("search?query=");
     setCurrentPage(0);
     getData().then((data) => {
+      console.log(data);
       setTotalPages(data.nbPages);
       setNumberResults(data.nbHits);
       setProcessingTime(data.processingTimeMS);
