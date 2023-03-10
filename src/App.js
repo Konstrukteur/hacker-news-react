@@ -21,7 +21,7 @@ function App() {
 
   return (
     <Routes>
-      <Route path='/hacker-news-react/' element={<NewsLayout />} />
+      <Route path='/hacker-news-react' element={<NewsLayout />} />
       <Route path='/hacker-news-react/news' element={<NewsLayout />} />
       <Route path='/hacker-news-react/newest' element={<NewsLayout />} />
       <Route path='/hacker-news-react/front' element={<NewsLayout />} />
