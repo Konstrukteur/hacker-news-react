@@ -1,0 +1,79 @@
+/* SEARCH RESULTS */
+.entrylist-container {
+  padding: 10px 0 0 0;
+}
+
+.result-entry {
+  font-size: 14px;
+  padding: 0 16px;
+  min-height: 40px;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.entry-data {
+  margin: 4px 0;
+}
+
+.entry-title {
+  display: flex;
+  width: 100%;
+  position: relative;
+  margin-bottom: 4px;
+  text-align: left;
+
+  color: #8f2d56;
+}
+
+.entry-title > a {
+  color: #8f2d56;
+  text-decoration: none;
+  font-size: 14px;
+  margin-right: 4px;
+}
+
+.entry-link {
+  color: #fbb13c;
+  font-size: 11px;
+  text-decoration: none;
+}
+
+.entry-link:hover {
+  text-decoration: underline;
+}
+
+.entry-meta {
+  color: #218380;
+  font-size: 10px;
+  display: flex;
+}
+
+.entry-meta a {
+  color: #218380;
+  font-size: 10px;
+  text-decoration: none;
+}
+
+.entry-meta a:hover {
+  text-decoration: underline;
+}
+
+.entry-separator {
+  margin: 0 5px;
+}
+
+/* .entry-points {
+  color: #73d2de;
+  border-right: 2px solid black;
+  padding-right: 50px;
+}
+
+.entry-author {
+  color: #fbb13c;
+  border-right: 2px solid black;
+  padding: 0 50px;
+}
+.entry-link a {
+  padding: 0 0 0 50px;
+  color: #218380;
+} */

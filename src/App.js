@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import { useEffect, useState } from "react";
-import HomeLayout from "./components/HomeLayout";
+import NewsLayout from "./components/NewsLayout";
 import SearchLayout from "./components/SearchLayout";
 import Search from "./components/Search";
 import Entry from "./components/Entry";
@@ -21,13 +21,13 @@ function App() {
 
   return (
     <Routes>
-      <Route path='/' element={<HomeLayout />} />
-      <Route path='/news' element={<HomeLayout />} />
-      <Route path='/newest' element={<HomeLayout />} />
-      <Route path='/front' element={<HomeLayout />} />
-      <Route path='/newcomments' element={<HomeLayout />} />
-      <Route path='/ask' element={<HomeLayout />} />
-      <Route path='/show' element={<HomeLayout />} />
+      <Route path='/' element={<NewsLayout />} />
+      <Route path='/news' element={<NewsLayout />} />
+      <Route path='/newest' element={<NewsLayout />} />
+      <Route path='/front' element={<NewsLayout />} />
+      <Route path='/newcomments' element={<NewsLayout />} />
+      <Route path='/ask' element={<NewsLayout />} />
+      <Route path='/show' element={<NewsLayout />} />
       <Route path='/search' element={<SearchLayout />} />
     </Routes>
   );
