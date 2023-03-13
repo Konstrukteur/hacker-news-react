@@ -18,8 +18,6 @@ function NewsLayout({ query, setQuery }) {
     setIsLoading(false);
   }, [entries]);
 
-  const handlePagination = () => {};
-
   return (
     <center>
       <div className='home-container'>
