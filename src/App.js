@@ -8,6 +8,7 @@ import loading from "./images/loading.gif";
 import Pagination from "./components/Pagination";
 
 function App() {
+  const [query, setQuery] = useState();
   const [entries, setEntries] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(0);
@@ -21,14 +22,38 @@ function App() {
 
   return (
     <Routes>
-      <Route path='/' element={<NewsLayout />} />
-      <Route path='/news' element={<NewsLayout />} />
-      <Route path='/newest' element={<NewsLayout />} />
-      <Route path='/front' element={<NewsLayout />} />
-      <Route path='/newcomments' element={<NewsLayout />} />
-      <Route path='/ask' element={<NewsLayout />} />
-      <Route path='/show' element={<NewsLayout />} />
-      <Route path='/search' element={<SearchLayout />} />
+      <Route
+        path='/'
+        element={<NewsLayout query={query} setQuery={setQuery} />}
+      />
+      <Route
+        path='/news'
+        element={<NewsLayout query={query} setQuery={setQuery} />}
+      />
+      <Route
+        path='/newest'
+        element={<NewsLayout query={query} setQuery={setQuery} />}
+      />
+      <Route
+        path='/front'
+        element={<NewsLayout query={query} setQuery={setQuery} />}
+      />
+      <Route
+        path='/newcomments'
+        element={<NewsLayout query={query} setQuery={setQuery} />}
+      />
+      <Route
+        path='/ask'
+        element={<NewsLayout query={query} setQuery={setQuery} />}
+      />
+      <Route
+        path='/show'
+        element={<NewsLayout query={query} setQuery={setQuery} />}
+      />
+      <Route
+        path='/search'
+        element={<SearchLayout query={query} setQuery={setQuery} />}
+      />
     </Routes>
   );
 }
