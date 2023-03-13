@@ -4,7 +4,6 @@ const Pagination = ({ currentPage, setCurrentPage, totalPages }) => {
   const pages = [...Array(totalPages).keys()];
 
   const handleClick = (event) => {
-    console.log(event.target.innerHTML - 1);
     setCurrentPage(event.target.innerHTML - 1);
   };
 
@@ -22,7 +21,7 @@ const Pagination = ({ currentPage, setCurrentPage, totalPages }) => {
         if (pages.length <= 11) {
           if (currentPage === page) {
             return (
-              <div className='active-page-link' id={page}>
+              <div className='active-page-link' key={page} id={page}>
                 {page + 1}
               </div>
             );
@@ -30,6 +29,7 @@ const Pagination = ({ currentPage, setCurrentPage, totalPages }) => {
             return (
               <div
                 className='page-link'
+                key={page}
                 id={page}
                 value={page}
                 onClick={(event) => {
