@@ -8,7 +8,7 @@ import Pagination from "./Pagination";
 import "../styles/newsStyles.css";
 import "../styles/searchResultsStyles.css";
 
-function NewsLayout() {
+function NewsLayout({ query, setQuery }) {
   const [entries, setEntries] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(0);
@@ -41,6 +41,8 @@ function NewsLayout() {
           totalPages={totalPages}
         />
         <Footer
+          query={query}
+          setQuery={setQuery}
           entries={entries}
           setEntries={setEntries}
           setIsLoading={setIsLoading}

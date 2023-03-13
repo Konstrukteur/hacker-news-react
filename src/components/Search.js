@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 
 const Search = ({
+  query,
+  setQuery,
   setEntries,
   setIsLoading,
   currentPage,
@@ -11,7 +13,7 @@ const Search = ({
   const initialUrl = `${baseUrl}search?tags=front_page`;
 
   const [params, setParams] = useState("search?tags=front_page");
-  const [query, setQuery] = useState();
+  // const [query, setQuery] = useState();
   const [apiUrl, setApiUrl] = useState(initialUrl);
   const [numberResults, setNumberResults] = useState();
   const [processingTime, setProcessingTime] = useState();
@@ -64,6 +66,7 @@ const Search = ({
   }, [currentPage, params]);
 
   useEffect(() => {
+    console.log(query);
     console.log(apiUrl);
     getData().then((data) => {
       console.log("hello from 1. useEffec");

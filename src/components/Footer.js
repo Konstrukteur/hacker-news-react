@@ -1,21 +1,23 @@
-import { useState, useEffect } from "react";
-import { NavLink } from "react-router-dom";
+import { useState, useEffect, useRef } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
 
 const Footer = ({
+  query,
+  setQuery,
   setEntries,
   setIsLoading,
   currentPage,
   setCurrentPage,
   setTotalPages,
 }) => {
+  const navigate = useNavigate();
   const baseUrl = "https://hn.algolia.com/api/v1/";
   const initialUrl = `${baseUrl}search?tags=front_page`;
 
+  const queryRef = useRef(null);
+
   const [params, setParams] = useState("search?tags=front_page");
-  const [query, setQuery] = useState();
   const [apiUrl, setApiUrl] = useState(initialUrl);
-  const [numberResults, setNumberResults] = useState();
-  const [processingTime, setProcessingTime] = useState();
 
   const getData = async () => {
     const data = await fetch(apiUrl)
@@ -49,16 +51,6 @@ const Footer = ({
   // http://hn.algolia.com/api/v1/search?tags=comment,story_X
 
   useEffect(() => {
-    console.log(query);
-  }, [query]);
-
-  // const handleQuery = (event, query) => {
-  //   if (event.key === "Enter") {
-  //     setQuery(query);
-  //   }
-  // };
-
-  useEffect(() => {
     query
       ? setApiUrl(`${baseUrl}${params}${query}&page=${currentPage}`)
       : setApiUrl(`${baseUrl}${params}&page=${currentPage}`);
@@ -67,11 +59,9 @@ const Footer = ({
   useEffect(() => {
     console.log(apiUrl);
     getData().then((data) => {
-      console.log("hello from 1. useEffec");
+      console.log("hello from useEffect");
       console.log(data);
       setTotalPages(data.nbPages);
-      setNumberResults(data.nbHits);
-      setProcessingTime(data.processingTimeMS);
       setEntries(data.hits);
       setIsLoading(false);
     });
@@ -79,34 +69,17 @@ const Footer = ({
 
   const handleKeyPress = (event) => {
     if (event.key === "Enter") {
-      console.log(query);
+      // console.log(query);
+      // Trying to use useRef for query input
+      queryRef.current = query;
+      console.log(queryRef.current);
       setIsLoading(true);
       setParams("search?query=");
       setCurrentPage(0);
-      getData().then((data) => {
-        console.log(data);
-        setTotalPages(data.nbPages);
-        setNumberResults(data.nbHits);
-        setProcessingTime(data.processingTimeMS);
-        setEntries(data.hits);
-        setIsLoading(false);
-      });
+      setQuery(queryRef.current);
+      console.log(query);
+      navigate("/search");
     }
-  };
-
-  const handleClick = () => {
-    console.log(query);
-    setIsLoading(true);
-    setParams("search?query=");
-    setCurrentPage(0);
-    getData().then((data) => {
-      console.log(data);
-      setTotalPages(data.nbPages);
-      setNumberResults(data.nbHits);
-      setProcessingTime(data.processingTimeMS);
-      setEntries(data.hits);
-      setIsLoading(false);
-    });
   };
 
   return (
@@ -132,9 +105,6 @@ const Footer = ({
             onChange={(e) => setQuery(e.target.value)}
             onKeyUp={handleKeyPress}
           />
-          {/* <span className="SearchIcon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-        <span className="SearchIcon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span> */}
         </div>
       </div>
     </>

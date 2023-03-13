@@ -8,7 +8,7 @@ import Pagination from "./Pagination";
 import "../styles/searchStyles.css";
 import "../styles/searchResultsStyles.css";
 
-function SearchLayout() {
+function SearchLayout({ query, setQuery }) {
   const [entries, setEntries] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(0);
@@ -23,6 +23,8 @@ function SearchLayout() {
   return (
     <div>
       <Search
+        query={query}
+        setQuery={setQuery}
         entries={entries}
         setEntries={setEntries}
         setIsLoading={setIsLoading}
