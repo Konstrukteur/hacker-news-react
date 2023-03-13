@@ -10,15 +10,17 @@ const Search = ({
   setTotalPages,
 }) => {
   const baseUrl = "https://hn.algolia.com/api/v1/";
-  const initialUrl = `${baseUrl}search?tags=front_page`;
+  const initialUrl = `${baseUrl + "search?query="}`;
 
-  const [params, setParams] = useState("search?tags=front_page");
-  // const [query, setQuery] = useState();
+  const [params, setParams] = useState("search?query=");
   const [apiUrl, setApiUrl] = useState(initialUrl);
   const [numberResults, setNumberResults] = useState();
   const [processingTime, setProcessingTime] = useState();
 
   const getData = async () => {
+    console.log("params", params);
+    console.log("query", query);
+    console.log("apiUrl", apiUrl);
     const data = await fetch(apiUrl)
       .then((response) => response.json())
       .catch((error) => {
@@ -50,26 +52,14 @@ const Search = ({
   // http://hn.algolia.com/api/v1/search?tags=comment,story_X
 
   useEffect(() => {
-    console.log(query);
-  }, [query]);
-
-  // const handleQuery = (event, query) => {
-  //   if (event.key === "Enter") {
-  //     setQuery(query);
-  //   }
-  // };
-
-  useEffect(() => {
-    query
-      ? setApiUrl(`${baseUrl}${params}${query}&page=${currentPage}`)
-      : setApiUrl(`${baseUrl}${params}&page=${currentPage}`);
+    setApiUrl(`${baseUrl}${params}${query}&page=${currentPage}`);
   }, [currentPage, params]);
 
   useEffect(() => {
-    console.log(query);
+    setApiUrl(`${baseUrl}${params}${query}&page=${currentPage}`);
     console.log(apiUrl);
     getData().then((data) => {
-      console.log("hello from 1. useEffec");
+      console.log("hello from 1. useEffect");
       console.log(data);
       setTotalPages(data.nbPages);
       setNumberResults(data.nbHits);

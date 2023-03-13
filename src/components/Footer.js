@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 
 const Footer = ({
@@ -10,15 +10,17 @@ const Footer = ({
   setCurrentPage,
   setTotalPages,
 }) => {
+  // useNavigate to get to Search Page on submit
   const navigate = useNavigate();
+  // set baseUrl and initialUrl
   const baseUrl = "https://hn.algolia.com/api/v1/";
   const initialUrl = `${baseUrl}search?tags=front_page`;
 
-  const queryRef = useRef(null);
-
+  // set params and apiUrl for potential implementation of filters
   const [params, setParams] = useState("search?tags=front_page");
   const [apiUrl, setApiUrl] = useState(initialUrl);
 
+  // fetch data form apiUrl
   const getData = async () => {
     const data = await fetch(apiUrl)
       .then((response) => response.json())
@@ -29,55 +31,27 @@ const Footer = ({
     return data;
   };
 
-  // All stories matching foo
-  // http://hn.algolia.com/api/v1/search?query=foo&tags=story
-  // All comments matching bar
-  // http://hn.algolia.com/api/v1/search?query=bar&tags=comment
-  // All URLs matching bar
-  // http://hn.algolia.com/api/v1/search?query=bar&restrictSearchableAttributes=url
-  // All stories that are on the front/home page right now
-  // http://hn.algolia.com/api/v1/search?tags=front_page
-  // Last stories
-  // http://hn.algolia.com/api/v1/search_by_date?tags=story
-  // Last stories OR polls
-  // http://hn.algolia.com/api/v1/search_by_date?tags=(story,poll)
-  // Comments since timestamp X (in second)
-  // http://hn.algolia.com/api/v1/search_by_date?tags=comment&numericFilters=created_at_i>X
-  // Stories between timestamp X and timestamp Y (in second)
-  // http://hn.algolia.com/api/v1/search_by_date?tags=story&numericFilters=created_at_i>X,created_at_i<Y
-  // Stories of pg
-  // http://hn.algolia.com/api/v1/search?tags=story,author_pg
-  // Comments of story X
-  // http://hn.algolia.com/api/v1/search?tags=comment,story_X
-
+  // build apiUrl on page or params change
+  // params change is hook for implementing potential filters on news page
   useEffect(() => {
-    query
-      ? setApiUrl(`${baseUrl}${params}${query}&page=${currentPage}`)
-      : setApiUrl(`${baseUrl}${params}&page=${currentPage}`);
+    setApiUrl(`${baseUrl}${params}&page=${currentPage}`);
   }, [currentPage, params]);
 
+  // trigger getData on apiUrl change
   useEffect(() => {
-    console.log(apiUrl);
     getData().then((data) => {
-      console.log("hello from useEffect");
-      console.log(data);
       setTotalPages(data.nbPages);
       setEntries(data.hits);
       setIsLoading(false);
     });
   }, [apiUrl]);
 
+  // set isLoading, current page and navigate to Search Page
   const handleKeyPress = (event) => {
     if (event.key === "Enter") {
-      // console.log(query);
       // Trying to use useRef for query input
-      queryRef.current = query;
-      console.log(queryRef.current);
       setIsLoading(true);
-      setParams("search?query=");
       setCurrentPage(0);
-      setQuery(queryRef.current);
-      console.log(query);
       navigate("/search");
     }
   };
@@ -86,7 +60,7 @@ const Footer = ({
     <>
       <div className='footer-container'>
         <div className='footer-nav'>
-          <span class='yclinks'>
+          <span className='yclinks'>
             <a href='newsguidelines.html'>Guidelines</a> |{" "}
             <a href='newsfaq.html'>FAQ</a> | <a href='lists'>Lists</a> |{" "}
             <a href='https://github.com/HackerNews/API'>API</a> |{" "}
