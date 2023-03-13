@@ -53,6 +53,12 @@ const Search = ({
 
   useEffect(() => {
     setApiUrl(`${baseUrl}${params}${query}&page=${currentPage}`);
+    console.log("apiUrl", apiUrl);
+  }, []);
+
+  useEffect(() => {
+    setApiUrl(`${baseUrl}${params}${query}&page=${currentPage}`);
+    console.log("apiUrl", apiUrl);
   }, [currentPage, params]);
 
   useEffect(() => {
@@ -60,6 +66,7 @@ const Search = ({
     console.log(apiUrl);
     getData().then((data) => {
       console.log("hello from 1. useEffect");
+      console.log(apiUrl);
       console.log(data);
       setTotalPages(data.nbPages);
       setNumberResults(data.nbHits);
@@ -73,8 +80,10 @@ const Search = ({
     if (event.key === "Enter") {
       console.log(query);
       setIsLoading(true);
+      setQuery(query);
       setParams("search?query=");
       setCurrentPage(0);
+      setApiUrl(`${baseUrl}${params}${query}&page=${currentPage}`);
       getData().then((data) => {
         console.log(data);
         setTotalPages(data.nbPages);
@@ -89,8 +98,10 @@ const Search = ({
   const handleClick = () => {
     console.log(query);
     setIsLoading(true);
+    setQuery(query);
     setParams("search?query=");
     setCurrentPage(0);
+    setApiUrl(`${baseUrl}${params}${query}&page=${currentPage}`);
     getData().then((data) => {
       console.log(data);
       setTotalPages(data.nbPages);
