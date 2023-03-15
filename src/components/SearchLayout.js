@@ -8,9 +8,7 @@ import "../styles/searchStyles.css";
 import "../styles/searchResultsStyles.css";
 
 function SearchLayout({ query, setQuery }) {
-  const [searchParams, setSearchParams] = useSearchParams(
-    `${query}&page=${currentPage}`
-  );
+  const [searchParams, setSearchParams] = useSearchParams(`${query}&page=0`);
   const [entries, setEntries] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(0);
