@@ -1,6 +1,5 @@
-import { Routes, Route } from "react-router-dom";
 import { useEffect, useState } from "react";
-// import { link } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import Search from "./Search";
 import Entry from "./Entry";
 import loading from "../images/loading.gif";
@@ -9,6 +8,7 @@ import "../styles/searchStyles.css";
 import "../styles/searchResultsStyles.css";
 
 function SearchLayout({ query, setQuery }) {
+  const [searchParams, setSearchParams] = useSearchParams();
   const [entries, setEntries] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(0);
@@ -17,8 +17,6 @@ function SearchLayout({ query, setQuery }) {
   useEffect(() => {
     setIsLoading(false);
   }, [entries]);
-
-  const handlePagination = () => {};
 
   return (
     <div>
@@ -31,6 +29,8 @@ function SearchLayout({ query, setQuery }) {
         currentPage={currentPage}
         setCurrentPage={setCurrentPage}
         setTotalPages={setTotalPages}
+        searchParams={searchParams}
+        setSearchParams={setSearchParams}
       />
       <div>
         {isLoading === true && <img src={loading} alt='loading'></img>}
