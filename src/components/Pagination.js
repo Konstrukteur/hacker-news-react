@@ -1,48 +1,85 @@
 import "../styles/pagination.css";
 
 const Pagination = ({ currentPage, setCurrentPage, totalPages }) => {
-  const pages = [...Array(totalPages).keys()];
+  const numberOfVisiblePages = 10;
+  const center = numberOfVisiblePages / 2;
+  const lowerBoundary = center + 1;
+  const upperBoundary = totalPages - center;
 
-  const handleClick = (event) => {
-    setCurrentPage(event.target.innerHTML - 1);
+  const createPages = () => {
+    return Array.from({ length: numberOfVisiblePages }, (value, index) =>
+      totalPages < numberOfVisiblePages || currentPage < center
+        ? index
+        : index - center + currentPage
+    ).filter((value) => value < totalPages);
   };
-
-  // if pages.length <= 11 map over pages and build navigation
-  // if pages.length > 12 && currentPage == 1 map over current
-
-  // display currentPage - 5 & currentPage + 5 & first page & last page
-  // [firstPage] [-5] [-4] [-3] [-2] [-1] [currentPage] [1] [2] [3] [4] [5] [lastPage]
-  // always display last and next five pages, if present
-  // if not on first || last page > display [firstPage] || [lastPage]
 
   return (
     <div className='pagination-links'>
-      {pages.map((page) => {
-        if (pages.length <= 11) {
-          if (currentPage === page) {
-            return (
-              <div className='active-page-link' key={page} id={page}>
-                {page + 1}
-              </div>
-            );
-          } else {
-            return (
-              <div
-                className='page-link'
-                key={page}
-                id={page}
-                value={page}
-                onClick={(event) => {
-                  handleClick(event);
-                }}
-              >
-                {page + 1}
-              </div>
-            );
-          }
-        } else {
-        }
+      {totalPages > numberOfVisiblePages && currentPage > center && (
+        <div
+          key={totalPages}
+          className='page-link'
+          onClick={() => {
+            setCurrentPage(0);
+          }}
+        >
+          1
+        </div>
+      )}
+      {currentPage !== 0 && currentPage >= lowerBoundary && (
+        <div
+          key='prev'
+          className='page-link'
+          onClick={() => {
+            setCurrentPage((curr) => curr - 1);
+          }}
+        >
+          {"<"}
+        </div>
+      )}
+
+      {createPages().map((page) => {
+        return (
+          <div
+            key={page}
+            className={`${
+              page === currentPage ? "active-page-link" : "page-link"
+            }`}
+            id={page}
+            value={page}
+            onClick={() => {
+              setCurrentPage(page);
+            }}
+          >
+            {page + 1}
+          </div>
+        );
       })}
+      {totalPages !== currentPage + 1 && currentPage <= upperBoundary && (
+        <div
+          key='next'
+          className='page-link'
+          onClick={() => {
+            setCurrentPage((curr) => curr + 1);
+          }}
+        >
+          {">"}
+        </div>
+      )}
+      {totalPages > numberOfVisiblePages && currentPage <= upperBoundary && (
+        <>
+          <div
+            key={totalPages}
+            className='page-link'
+            onClick={() => {
+              setCurrentPage(totalPages - 1);
+            }}
+          >
+            {totalPages}
+          </div>
+        </>
+      )}
     </div>
   );
 };

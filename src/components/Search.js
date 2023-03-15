@@ -1,4 +1,6 @@
+import * as React from "react";
 import { useState, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 
 const Search = ({
   query,
@@ -8,6 +10,8 @@ const Search = ({
   currentPage,
   setCurrentPage,
   setTotalPages,
+  searchParams,
+  setSearchParams,
 }) => {
   const baseUrl = "https://hn.algolia.com/api/v1/";
   const initialUrl = `${baseUrl + "search?query="}`;
@@ -18,9 +22,6 @@ const Search = ({
   const [processingTime, setProcessingTime] = useState();
 
   const getData = async () => {
-    console.log("params", params);
-    console.log("query", query);
-    console.log("apiUrl", apiUrl);
     const data = await fetch(apiUrl)
       .then((response) => response.json())
       .catch((error) => {
@@ -53,21 +54,16 @@ const Search = ({
 
   useEffect(() => {
     setApiUrl(`${baseUrl}${params}${query}&page=${currentPage}`);
-    console.log("apiUrl", apiUrl);
   }, []);
 
   useEffect(() => {
     setApiUrl(`${baseUrl}${params}${query}&page=${currentPage}`);
-    console.log("apiUrl", apiUrl);
+    setSearchParams(`${query}&page=${currentPage}`);
   }, [currentPage, params]);
 
   useEffect(() => {
     setApiUrl(`${baseUrl}${params}${query}&page=${currentPage}`);
-    console.log(apiUrl);
     getData().then((data) => {
-      console.log("hello from 1. useEffect");
-      console.log(apiUrl);
-      console.log(data);
       setTotalPages(data.nbPages);
       setNumberResults(data.nbHits);
       setProcessingTime(data.processingTimeMS);
@@ -78,14 +74,13 @@ const Search = ({
 
   const handleKeyPress = (event) => {
     if (event.key === "Enter") {
-      console.log(query);
       setIsLoading(true);
       setQuery(query);
       setParams("search?query=");
       setCurrentPage(0);
       setApiUrl(`${baseUrl}${params}${query}&page=${currentPage}`);
+      setSearchParams(`${event.target.value}&page=${currentPage}`);
       getData().then((data) => {
-        console.log(data);
         setTotalPages(data.nbPages);
         setNumberResults(data.nbHits);
         setProcessingTime(data.processingTimeMS);
@@ -96,14 +91,13 @@ const Search = ({
   };
 
   const handleClick = () => {
-    console.log(query);
     setIsLoading(true);
     setQuery(query);
     setParams("search?query=");
     setCurrentPage(0);
     setApiUrl(`${baseUrl}${params}${query}&page=${currentPage}`);
+    setSearchParams(`${query}&page=${currentPage}`);
     getData().then((data) => {
-      console.log(data);
       setTotalPages(data.nbPages);
       setNumberResults(data.nbHits);
       setProcessingTime(data.processingTimeMS);
@@ -127,6 +121,7 @@ const Search = ({
             </div>
           </a>
         </div>
+        {/* <form onSubmit={handleSubmit}> */}
         <div className='search-bar-input'>
           <input
             className='search-input'
@@ -136,10 +131,11 @@ const Search = ({
             onKeyUp={handleKeyPress}
             placeholder='Search stories by title, url or author'
           />
-          {/* <span className="SearchIcon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
+        </div>
+        {/* <span className="SearchIcon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
         <span className="SearchIcon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span> */}
-        </div>
+
         <button
           className='search-bar-button'
           type='button'
@@ -147,6 +143,7 @@ const Search = ({
         >
           search
         </button>
+        {/* </form> */}
       </div>
       <div className='search-filters-container'>
         <div className='search-filters-selectors'></div>
